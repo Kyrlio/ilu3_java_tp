@@ -24,5 +24,10 @@ public class Borne extends Carte {
 		}
 		return false;
 	}
+	
+	@Override
+	public int hashCode() {
+		return 31 * (km + super.hashCode());
+	}
 
 }
