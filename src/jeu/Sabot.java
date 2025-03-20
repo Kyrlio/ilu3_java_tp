@@ -2,6 +2,7 @@ package jeu;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
 import cartes.Carte;
