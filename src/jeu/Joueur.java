@@ -1,5 +1,8 @@
 package jeu;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import cartes.Borne;
 import cartes.Carte;
 
@@ -27,6 +30,26 @@ public class Joueur {
 	
 	public int donnerKmParcourus() {
 		return zoneDeJeu.donnerKmParcourus();
+	}
+	
+	public Set<Coup> coupsPossibles(Set<Joueur> participants){
+		Set<Coup> coupsPossibles = new HashSet<>();
+		for (Joueur participant : participants) {
+			for (Carte carte : main) {
+				Coup coup = new Coup(carte, this, participant);
+				if (coup.estValide()) coupsPossibles.add(coup);
+			}
+		}
+		return coupsPossibles;
+	}
+
+	public Set<Coup> coupsDefausse(){
+		Set<Coup> coupsDefausse = new HashSet<>();
+		for (Carte carte : main) {
+			Coup coup = new Coup(carte, this, null);
+			if (coup.estValide()) coupsDefausse.add(coup);
+		}
+		return coupsDefausse;
 	}
 	
 	
