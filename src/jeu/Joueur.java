@@ -1,6 +1,8 @@
 package jeu;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 import cartes.Borne;
@@ -50,6 +52,31 @@ public class Joueur {
 			if (coup.estValide()) coupsDefausse.add(coup);
 		}
 		return coupsDefausse;
+	}
+	
+	public void retirerDeLaMain(Carte carte) {
+		main.jouer(carte);
+	}
+	
+	private Coup randomCoupChoisi(Set<Coup> coup) {
+		Iterator<Coup> iter = coup.iterator();
+		Random random = new Random();
+		Coup next = null;
+		int n = random.nextInt(coup.size());
+		for (int i = 0; i < n; i++) {
+			next = iter.next();
+			if (i == n) {
+				break;
+			}
+		}
+		return next;
+	}
+	
+	public Coup choisirCoup(Set<Joueur> participants) {
+		Set<Coup> coupsPossibles = coupsPossibles(participants);
+		if (coupsPossibles.isEmpty())
+			randomCoupChoisi(coupsDefausse());
+		return randomCoupChoisi(coupsPossibles);
 	}
 	
 	
