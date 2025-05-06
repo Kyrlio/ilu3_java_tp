@@ -7,6 +7,7 @@ import java.util.Set;
 
 import cartes.Borne;
 import cartes.Carte;
+import cartes.Cartes;
 
 public class Joueur {
 	private String nom;
@@ -38,10 +39,12 @@ public class Joueur {
 		Set<Coup> coupsPossibles = new HashSet<>();
 		for (Joueur participant : participants) {
 			for (Carte carte : main) {
+				System.out.println("test coup " + carte.toString() + " a : " + participant.toString());
 				Coup coup = new Coup(carte, this, participant);
 				if (coup.estValide()) coupsPossibles.add(coup);
 			}
 		}
+		System.out.println(coupsPossibles.toString());
 		return coupsPossibles;
 	}
 
@@ -62,6 +65,7 @@ public class Joueur {
 		Iterator<Coup> iter = coup.iterator();
 		Random random = new Random();
 		Coup next = null;
+		if (coup.size() <= 0) return next;
 		int n = random.nextInt(coup.size());
 		for (int i = 0; i < n; i++) {
 			next = iter.next();
@@ -77,6 +81,16 @@ public class Joueur {
 		if (coupsPossibles.isEmpty())
 			randomCoupChoisi(coupsDefausse());
 		return randomCoupChoisi(coupsPossibles);
+	}
+	
+	public String afficherEtatJoueur() {
+		boolean limiteVitesse = false;
+		if (zoneDeJeu.donnerLimitationVitesse() == 50) limiteVitesse = true;
+		return 	"Bottes : " + zoneDeJeu.afficherBottes() + "\n"
+				+ "Limitation de vitesse : " + limiteVitesse + "\n"
+				+ "Sommet pile bataille : " + zoneDeJeu.getFirstBataille() + "\n"
+				+ "Main : " + main.toString() + "\n"
+				+ "Km parcourus : " + donnerKmParcourus();
 	}
 	
 	

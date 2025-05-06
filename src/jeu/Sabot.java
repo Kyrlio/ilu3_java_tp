@@ -43,7 +43,7 @@ public class Sabot implements Iterable<Carte>{
 			throw new NoSuchElementException("Le sabot est vide ! Impossible de piocher.");
 		Carte carte = it.next();
 		it.remove();
-		System.out.println("Je pioche " + carte.toString());
+//		System.out.println("Je pioche " + carte.toString());
 		return carte;
 	}
 	

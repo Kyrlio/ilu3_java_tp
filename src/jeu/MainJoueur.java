@@ -38,6 +38,10 @@ public class MainJoueur implements Iterable<Carte>{
 		
 		// return main.toString();
 	}
+	
+	public int getNbCarte() {
+		return main.size();
+	}
 
 	@Override
 	public Iterator<Carte> iterator() {

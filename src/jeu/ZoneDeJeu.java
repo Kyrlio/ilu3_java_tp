@@ -170,6 +170,16 @@ public class ZoneDeJeu {
 		default : return false;
 		}
 	}
+	
+	public String afficherBottes() {
+		if (bottes.isEmpty()) return "Aucune botte.";
+		return bottes.toString();
+	}
+	
+	public Bataille getFirstBataille() {
+		if (pileBataille.isEmpty()) return null;
+		return pileBataille.getFirst();
+	}
 
 
 	
